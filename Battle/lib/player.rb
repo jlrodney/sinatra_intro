@@ -9,4 +9,8 @@ class Player
   def lose_hp(amount)
     @hp -= amount
   end
+
+  def dead?
+    @hp <= 0
+  end 
 end
