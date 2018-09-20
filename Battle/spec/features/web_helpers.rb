@@ -2,7 +2,7 @@
 
 def sign_in_and_play
   visit('/')
-  fill_in :player_1_name, with: "Jamie"
-  fill_in :player_2_name, with: "Florence"
+  fill_in :player_1_name, with: "Donkey Kong"
+  fill_in :player_2_name, with: "Bowser Jr."
   click_button 'Submit'
 end
