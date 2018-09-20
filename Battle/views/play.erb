@@ -1,10 +1,11 @@
 <h><%= @player_1_name %> vs. <%= @player_2_name %></h>
 
-<p><%= @player_1_name %>: 100 HP
-  <form>
-    <input type="submit" name="attack"/>
+<p><%= @player_1_name %>: <%= @player_1_HP %>HP
+  <form action="/player_1_attacks" method="post">
+    <input type="submit" name="player_1_attacks" value="player_1_attacks"/>
+
   </form>
 </p>
 
-<p><%= @player_2_name %>: 100 HP
+<p><%= @player_2_name %>: <%= @player_2_HP %>HP
 </p>
