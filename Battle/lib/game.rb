@@ -6,12 +6,12 @@ class Game
   def initialize(player1, player2, player_1_hp = 100, player_2_hp = 100)
     @players = [Player.new(player1, player_1_hp), Player.new(player2, player_2_hp)]
     @turn = @players[rand(2)]
-    @not_turn = @players[1]
+    @not_turn = @players[0]
   end
 
-  def attack(player,amount)
-    @players[player].lose_hp(amount)
-    switch_turn
+  def attack(player,move)
+    @players[player].lose_hp(move.dmg)
+    switch_turn unless move.paralysin
   end
 
   def game_over

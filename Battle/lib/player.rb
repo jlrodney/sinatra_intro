@@ -12,5 +12,5 @@ class Player
 
   def dead?
     @hp <= 0
-  end 
+  end
 end

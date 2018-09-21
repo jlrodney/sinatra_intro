@@ -29,49 +29,49 @@ class Battle < Sinatra::Base
 
   post '/player_1_attacks' do
     session[:move].tackle
-    session[:game].attack(1, session[:move].dmg)
+    session[:game].attack(1, session[:move])
     redirect '/play'
   end
 
   post '/player_2_attacks' do
     session[:move].tackle
-    session[:game].attack(0, session[:move].dmg)
+    session[:game].attack(0, session[:move])
     redirect '/play'
   end
 
   post '/player_1_attacks_dragon_rage' do
     session[:move].dragon_rage
-    session[:game].attack(1, session[:move].dmg)
+    session[:game].attack(1, session[:move])
     redirect '/play'
   end
 
   post '/player_2_attacks_dragon_rage' do
     session[:move].dragon_rage
-    session[:game].attack(0, session[:move].dmg)
+    session[:game].attack(0, session[:move])
     redirect '/play'
   end
 
-  post '/player_1_attacks_hydro_pump' do
-    session[:move].hydro_pump
-    session[:game].attack(1, session[:move].dmg)
+  post '/player_1_attacks_thunderbolt' do
+    session[:move].thunderbolt
+    session[:game].attack(1, session[:move])
     redirect '/play'
   end
 
-  post '/player_2_attacks_hydro_pump' do
-    session[:move].hydro_pump
-    session[:game].attack(0, session[:move].dmg)
+  post '/player_2_attacks_thunderbolt' do
+    session[:move].thunderbolt
+    session[:game].attack(0, session[:move])
     redirect '/play'
   end
 
   post '/player_1_attacks_splash' do
     session[:move].splash
-    session[:game].attack(1, session[:move].dmg)
+    session[:game].attack(1, session[:move])
     redirect '/play'
   end
 
   post '/player_2_attacks_splash' do
     session[:move].splash
-    session[:game].attack(0, session[:move].dmg)
+    session[:game].attack(0, session[:move])
     redirect '/play'
   end
 
