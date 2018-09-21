@@ -12,6 +12,9 @@ class Game
   def attack(player,move)
     @players[player].lose_hp(move.dmg)
     switch_turn unless move.paralysin
+    if move.paralysin
+      @not_turn = @turn
+    end
   end
 
   def game_over

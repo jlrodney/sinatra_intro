@@ -16,7 +16,7 @@ class Move
   def thunderbolt
     b = [5, 7, 17, 20, 10]
     @dmg = b.sample
-    @move = 'Hydro pump'
+    @move = 'Thunderbolt'
     @paralysin = false
     @paralysin = true if rand(100) >= 70
   end
