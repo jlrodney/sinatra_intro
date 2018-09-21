@@ -1,15 +1,16 @@
 require_relative 'player'
 class Game
 
-  attr_reader :players, :turn
+  attr_reader :players, :turn, :not_turn
 
   def initialize(player1, player2, player_1_hp = 100, player_2_hp = 100)
     @players = [Player.new(player1, player_1_hp), Player.new(player2, player_2_hp)]
-    @turn = 0
+    @turn = @players[0]
+    @not_turn = @players[1]
   end
 
-  def attack(index)
-    @players[index].lose_hp(rand(50))
+  def attack(player,amount)
+    @players[player].lose_hp(amount)
     switch_turn
   end
 
@@ -18,16 +19,26 @@ class Game
   end
 
   def switch_turn
-    if @turn == 0
-      @turn = 1
+    if @turn == @players[0]
+      @turn = @players[1]
+      @not_turn = @players[0]
     else
-      @turn =0
+      @turn = @players[0]
+      @not_turn = @players[1]
     end
   end
 
   def winner
     return 1 if players[0].dead?
     return 0
+  end
+
+  def turn_link
+    if turn == @players[0]
+      "player_1_attacks"
+    else
+      "player_2_attacks"
+    end
   end
 
 end

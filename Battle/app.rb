@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require_relative 'lib/player'
 require './lib/game'
+require './lib/move'
 
 
 class Battle < Sinatra::Base
@@ -12,6 +13,7 @@ class Battle < Sinatra::Base
 
   post '/names' do
     session[:game] = Game.new(params[:player_1_name], params[:player_2_name])
+    session[:move] = Move.new
     p session
     redirect '/play'
   end
@@ -26,15 +28,52 @@ class Battle < Sinatra::Base
   end
 
   post '/player_1_attacks' do
-    session[:game].attack(1)
+    session[:move].tackle
+    session[:game].attack(1, session[:move].dmg)
     redirect '/play'
   end
 
   post '/player_2_attacks' do
-    session[:game].attack(0)
+    session[:move].tackle
+    session[:game].attack(0, session[:move].dmg)
     redirect '/play'
   end
 
+  post '/player_1_attacks_dragon_rage' do
+    session[:move].dragon_rage
+    session[:game].attack(1, session[:move].dmg)
+    redirect '/play'
+  end
+
+  post '/player_2_attacks_dragon_rage' do
+    session[:move].dragon_rage
+    session[:game].attack(0, session[:move].dmg)
+    redirect '/play'
+  end
+
+  post '/player_1_attacks_hydro_pump' do
+    session[:move].hydro_pump
+    session[:game].attack(1, session[:move].dmg)
+    redirect '/play'
+  end
+
+  post '/player_2_attacks_hydro_pump' do
+    session[:move].hydro_pump
+    session[:game].attack(0, session[:move].dmg)
+    redirect '/play'
+  end
+
+  post '/player_1_attacks_splash' do
+    session[:move].splash
+    session[:game].attack(1, session[:move].dmg)
+    redirect '/play'
+  end
+
+  post '/player_2_attacks_splash' do
+    session[:move].splash
+    session[:game].attack(0, session[:move].dmg)
+    redirect '/play'
+  end
 
   get '/game_over' do
     @game = session[:game]

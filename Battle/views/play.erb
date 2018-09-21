@@ -1,17 +1,23 @@
 <h><%= @game.players[0].name %> vs. <%= @game.players[1].name %></h>
 
-<p><%= @game.players[0].name %>: <%= @game.players[0].hp %>HP
-  <% if @game.turn == 0 %>
-    <form action="/player_1_attacks" method="post">
-      <input type="submit" name="player_1_attacks" value="player_1_attacks"/>
-    </form>
-    <% end %>
-</p>
+<p><%= @game.players[0].name %>: <%= @game.players[0].hp %>HP</p>
 
-<p><%= @game.players[1].name %>: <%= @game.players[1].hp %>HP
-  <% if @game.turn == 1 %>
-    <form action="/player_2_attacks" method="post">
-      <input type="submit" name="player_2_attacks" value="player_2_attacks"/>
-    </form>
-    <% end %>
-</p>
+<p><%= @game.players[1].name %>: <%= @game.players[1].hp %>HP</p>
+
+<p>players turn: <%= @game.turn.name %></p>
+
+<form action="/<%= @game.turn_link %>" method="post">
+  <input type="submit" name="<%= @game.turn_link %>" value="Tackle"/>
+</form>
+<form action="/<%= @game.turn_link %>_dragon_rage" method="post">
+  <input type="submit" name="<%= @game.turn_link %>" value="Dragon Rage"/>
+</form>
+<form action="/<%= @game.turn_link %>_splash" method="post">
+  <input type="submit" name="<%= @game.turn_link %>" value="Splash"/>
+</form>
+<form action="/<%= @game.turn_link %>_hydro_pump" method="post">
+  <input type="submit" name="<%= @game.turn_link %>" value="Hydro Pump"/>
+</form>
+<p> <% if session[:move].move != '' %>
+  <%= @game.not_turn.name %> attacked with <%= session[:move].move %> and did <%= session[:move].dmg %> HP
+<% end %> </p>
