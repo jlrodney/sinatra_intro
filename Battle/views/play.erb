@@ -18,8 +18,12 @@
   }
 </style>
 
-<body class='hello'>
-<h1><%= @game.players[0].name %> vs. <%= @game.players[1].name %></h1>
+<body class='hello' background="https://img.memecdn.com/epic-pokemon-battle_o_1083984.jpg" background-position="center">
+  <font face="courier" color="blue">
+<h1 align="center"><%= @game.players[0].name %> vs. <%= @game.players[1].name %></h1>
+<font/>
+<br>
+<br>
 <br>
 <br>
 <div class="hitpoints">
@@ -27,6 +31,8 @@
   <div class="progress">
     <div class="progress-bar" role="progressbar" style="width: <%= @game.players[0].hp %>%" aria-valuenow="<%= (@game.players[0].hp) %>" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
+  <br>
+  <br>
   <p><%= @game.players[1].name %>: <%= @game.players[1].hp %>HP</p>
   <div class="progress">
     <div class="progress-bar" role="progressbar" style="width: <%= (@game.players[1].hp) %>%" aria-valuenow="<%= (@game.players[1].hp) %>" aria-valuemin="0" aria-valuemax="100"></div>
@@ -39,7 +45,12 @@
 <br>
 <br>
 <br>
-<p>players turn: <%= @game.turn.name %></p>
+<font size="5" face="courier" color="blue">
+<p> <% if session[:move].move != '' %>
+  <%= @game.not_turn.name %> attacked with <%= session[:move].move %> and did <%= session[:move].dmg %> damage!
+<% end %> </p>
+<p> <%= @game.turn.name %>'s turn</p>
+<font/>
 
 <form action="/<%= @game.turn_link %>" method="post">
   <input type="submit" name="<%= @game.turn_link %>" value="Tackle"/>
@@ -53,9 +64,6 @@
 <form action="/<%= @game.turn_link %>_thunderbolt" method="post">
   <input type="submit" name="<%= @game.turn_link %>" value="Thunderbolt"/>
 </form>
-<p> <% if session[:move].move != '' %>
-  <%= @game.not_turn.name %> attacked with <%= session[:move].move %> and did <%= session[:move].dmg %> HP
-<% end %> </p>
 
 </body>
 </html>
